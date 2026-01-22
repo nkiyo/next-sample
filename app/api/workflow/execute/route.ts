@@ -8,3 +8,10 @@ export async function POST(request: NextRequest) {
     { status: 200 }
   );
 }
+
+export async function GET(request: NextRequest) {
+  // TODO 何か動的な値を返す
+  return NextResponse.json(
+    { status: 200 }
+  );
+}
