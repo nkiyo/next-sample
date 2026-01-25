@@ -10,8 +10,9 @@ export async function POST(request: NextRequest) {
 }
 
 export async function GET(request: NextRequest) {
-  // TODO 何か動的な値を返す
+  const now = new Date().toISOString();
+
   return NextResponse.json(
-    { status: 200 }
+    { status: 200, now }
   );
 }
