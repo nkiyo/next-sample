@@ -17,7 +17,7 @@ export default function Home() {
           throw new Error(`HTTP error: ${res.status}`);
         }
 
-        const json: ApiResponse = await res.json();
+        const json = await res.json();
         setData(json);
         console.log(json.now);
       } catch (e) {
