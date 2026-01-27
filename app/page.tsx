@@ -1,10 +1,14 @@
 "use client";
 
+type Data = {
+  now: string;
+}
+
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<Data | null>(null);
 
   useEffect(() => {
     console.log("hoge")
@@ -21,7 +25,7 @@ export default function Home() {
         setData(json);
         console.log(json.now);
       } catch (e) {
-        setError("データの取得に失敗しました");
+        console.error("データの取得に失敗しました");
       }
     }
 
