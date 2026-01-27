@@ -11,6 +11,7 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   const now = new Date().toISOString();
+  console.log(`### ${now} ###`);
 
   return NextResponse.json(
     { status: 200, now }
