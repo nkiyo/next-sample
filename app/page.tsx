@@ -2,6 +2,7 @@
 
 type Data = {
   now: string;
+  buckets: string[];
 }
 
 import Image from "next/image";
@@ -48,7 +49,7 @@ export default function Home() {
           <p>Welcome {user?.username}</p>
           <button onClick={signOut}>Sign out</button> 
           <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-            ほげほげ {data?.now}
+            ほげほげ {data?.buckets}
           </div>
       </div>
       )}
