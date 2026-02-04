@@ -25,8 +25,8 @@ export async function GET(request: NextRequest) {
   // const buckets = response.Buckets?.map(b => (
   //   b.Name
   // )) ?? [];
-  const buckets = [];
-  console.log(`### ${JSON.stringify(buckets)} ###`);
+  const buckets = ["hoge"];
+  // console.log(`### ${JSON.stringify(buckets)} ###`);
 
   return NextResponse.json(
     { status: 200, now, buckets }

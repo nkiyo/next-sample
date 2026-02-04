@@ -33,7 +33,7 @@ export default function Home() {
         const json = await res.json();
         console.log(json.now);
 
-        const b = await listS3Buckets();
+        const b: string[] = await listS3Buckets();
         json.buckets = b;
         setData(json);
         console.log(`### ${b} ###`)
