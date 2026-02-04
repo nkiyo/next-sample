@@ -11,6 +11,7 @@ import { Amplify } from 'aws-amplify';
 import awsExports from './aws-exports'
 import { Authenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
+import {listS3Buckets} from './actions'
 
 // 参考: https://docs.aws.amazon.com/ja_jp/prescriptive-guidance/latest/patterns/authenticate-react-app-users-cognito-amplify-ui.html
 Amplify.configure({...awsExports})
@@ -30,14 +31,21 @@ export default function Home() {
         }
 
         const json = await res.json();
-        setData(json);
         console.log(json.now);
+
+        const b = await listS3Buckets();
+        json.buckets = b;
+        setData(json);
+        console.log(`### ${b} ###`)
       } catch (e) {
         console.error("データの取得に失敗しました");
       }
     }
 
     fetchData();
+
+    // const b = await listS3Buckets();
+    // console.log(`### ${b} ###`)
   }, []);
 
   return (
