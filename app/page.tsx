@@ -12,6 +12,8 @@ import awsExports from './aws-exports'
 import { Authenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import {listS3Buckets} from './actions'
+import { fetchAuthSession } from 'aws-amplify/auth';
+
 
 // 参考: https://docs.aws.amazon.com/ja_jp/prescriptive-guidance/latest/patterns/authenticate-react-app-users-cognito-amplify-ui.html
 Amplify.configure({...awsExports})
@@ -23,8 +25,15 @@ export default function Home() {
     console.log("hoge")
 
     const fetchData = async () => {
+      const session = await fetchAuthSession();
+      const idToken = session.tokens?.idToken?.toString();
       try {
-        const res = await fetch("/api/workflow/execute");
+        const res = await fetch("/api/workflow/execute", 
+          {
+            headers: {
+              Authorization: `Bearer ${idToken}`,
+            },
+          });
 
         if (!res.ok) {
           throw new Error(`HTTP error: ${res.status}`);
